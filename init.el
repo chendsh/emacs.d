@@ -8,13 +8,15 @@
  '(blink-cursor-blinks 0)
  '(custom-enabled-themes (quote (wombat)))
  '(initial-frame-alist (quote ((height . 50) (width . 168))))
+ '(linum-delay t)
  '(package-selected-packages (quote (haskell-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(hl-line ((t (:background "bisque4" :foreground "white smoke")))))
+ '(hl-line ((t (:background "bisque4" :foreground "white smoke"))))
+ '(region ((t (:background "dark-green" :foreground "navajo white" :box (:line-width 2 :color "grey75" :style released-button))))))
 (put 'narrow-to-region 'disabled nil)
 
 (defun add-to-load-path (&rest paths)
@@ -40,8 +42,14 @@
 (global-linum-mode t)
 (setq frame-title-format "%f")
 (set-face-background 'region "dark-green")
-(global-hl-line-mode t)
-
+;(global-hl-line-mode t)
+(require 'hl-line)
+(defun global-hl-line-timer-function ()
+  (global-hl-line-unhighlight-all)
+  (let ((global-hl-line-mode t))
+    (global-hl-line-highlight)))
+(setq global-hl-line-timer
+      (run-with-idle-timer 0.05 t 'global-hl-line-timer-function))
 (require 'package)
 (add-to-list
  'package-archives
@@ -58,9 +66,13 @@
 ;;(add-to-list 'interpreter-mode-alist '("runhaskell" . haskell-mode))
 ;;;(setq haskell-program-name "ghci")
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-
+;;just to use external diff command
+(add-to-list 'exec-path "C:/Users/dongsche1/Documents/gnupak/gnupack_devel-13.06-2015.11.08/app/cygwin/cygwin/bin")
 ;;org-mode
 (add-hook 'org-mode-hook
+	  '(lambda ()
+	     (linum-mode 0)))
+(add-hook 'eww-mode-hook
 	  '(lambda ()
 	     (linum-mode 0)))
 
