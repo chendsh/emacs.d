@@ -6,10 +6,19 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(blink-cursor-blinks 0)
+ '(column-number-mode t)
  '(custom-enabled-themes (quote (wombat)))
+ '(display-battery-mode t)
+ '(fringe-mode (quote (0)) nil (fringe))
+ '(initial-buffer-choice t)
  '(initial-frame-alist (quote ((height . 50) (width . 168))))
  '(linum-delay t)
- '(package-selected-packages (quote (haskell-mode))))
+ '(menu-bar-mode nil)
+ '(package-selected-packages (quote (haskell-mode)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil)
+ '(tooltip-mode nil)
+ '(visual-line-fringe-indicators (quote (nil right-curly-arrow))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
