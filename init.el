@@ -79,18 +79,11 @@
 (add-to-list 'exec-path "C:/cygwin64/bin")
 (add-to-list 'exec-path "C:/cygwin64/usr/local/bin")
 (setq default-process-coding-system '(utf-8-dos . cp932))
-					;(when (require 'helm-ag nil t)
-;(require 'helm-files)
-;(require 'helm-ag)
-;(setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case --line-numbers")
 (when (or (eq system-type 'windows-nt) (eq system-type 'msdos))
       (setenv "PATH" (concat "c:\\cygwin64\\bin;" (concat "c:\\cygwin64\\usr\\local\\bin;" (getenv "PATH"))))
       (setq find-program "C:/cygwin64/usr/bin/find.exe"
             grep-program "C:/cygwin64/usr/bin/grep.exe"))
 					;(require 'ag)
-;(setq ag-executable "C:\\cygwin64\\usr\\local\\bin\\ag.exe")
-;(setq ag-arguments '())
-					;(setq ag-arguments (list "--color" "--color-match 30\;43" "--literal" "--smart-case" "--nogroup" "--column" "-- pattern ."))
 
 (setq ag-highlight-search t)
 
