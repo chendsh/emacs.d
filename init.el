@@ -14,7 +14,7 @@
  '(initial-frame-alist (quote ((height . 50) (width . 168))))
  '(linum-delay t)
  '(menu-bar-mode nil)
- '(package-selected-packages (quote (haskell-mode)))
+ '(package-selected-packages (quote (dash s ag helm-ag-r)))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
@@ -76,7 +76,26 @@
 ;;;(setq haskell-program-name "ghci")
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 ;;just to use external diff command
-(add-to-list 'exec-path "C:/Users/dongsche1/Documents/gnupak/gnupack_devel-13.06-2015.11.08/app/cygwin/cygwin/bin")
+(add-to-list 'exec-path "C:/cygwin64/bin")
+(add-to-list 'exec-path "C:/cygwin64/usr/local/bin")
+(setq default-process-coding-system '(utf-8-dos . cp932))
+					;(when (require 'helm-ag nil t)
+;(require 'helm-files)
+;(require 'helm-ag)
+;(setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case --line-numbers")
+(when (or (eq system-type 'windows-nt) (eq system-type 'msdos))
+      (setenv "PATH" (concat "c:\\cygwin64\\bin;" (concat "c:\\cygwin64\\usr\\local\\bin;" (getenv "PATH"))))
+      (setq find-program "C:/cygwin64/usr/bin/find.exe"
+            grep-program "C:/cygwin64/usr/bin/grep.exe"))
+					;(require 'ag)
+;(setq ag-executable "C:\\cygwin64\\usr\\local\\bin\\ag.exe")
+;(setq ag-arguments '())
+					;(setq ag-arguments (list "--color" "--color-match 30\;43" "--literal" "--smart-case" "--nogroup" "--column" "-- pattern ."))
+
+(setq ag-highlight-search t)
+
+;Alt+sでag実行
+;(define-key global-map [(M s)] 'helm-ag)
 ;;org-mode
 (add-hook 'org-mode-hook
 	  '(lambda ()
@@ -84,5 +103,5 @@
 (add-hook 'eww-mode-hook
 	  '(lambda ()
 	     (linum-mode 0)))
-
+ (org-babel-do-load-languages 'org-babel-load-languages '((js . t) (shell . t)))
 
